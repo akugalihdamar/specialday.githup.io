@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Waktu Sejak 2 Agustus 2024</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: url(bahan/background.avif) no-repeat center center fixed;
+            background-size: cover;
+            color: #f9f9f9;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto; /* Memastikan scroll vertikal dapat digunakan */
+        }
+
+        .page {
+            text-align: center;
+            background: rgba(146, 71, 91, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #fbfbfb;
+            max-width: 90%;
+            box-sizing: border-box;
+            margin: 1rem auto;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        .gif-container img {
+            max-width: 50%; /* Atur ukuran maksimal GIF */
+            height: auto;
+        }
+        
+        .small-gif {
+            max-width: 50%;
+            height: auto;
+        }
+        
+        #timer {
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        #timer div {
+            background: #ed8ecd;
+            padding: 0.8rem 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ff619b;
+        }
+
+        #timer span {
+            display: block;
+            font-size: 1.5rem;
+        }
+
+        #timer p {
+            margin: 0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        .page button {
+            padding: 1rem;
+            font-size: 1.5rem;
+            background: #ed8ecd;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff619b;
+            margin: 0.5rem 0;
+            display: block;
+            width: 100%;
+            max-width: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem; /* Ukuran ikon */
+        }
+
+        .page button:hover {
+            background: #ff619b;
+        }
+
+        .page button i {
+            margin-right: 0;
+        }
+
+        #timePage, #lovePage {
+            display: none;
+        }
+
+        .instagram-button {
+            background: #e4405f;
+            border: none;
+            box-shadow: 0 0 10px #e4405f;
+        }
+
+        .instagram-button:hover {
+            background: #c13584;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            .page {
+                padding: 1rem;
+                max-width: 95%;
+                margin: 1rem auto;
+            }
+
+            .page button {
+                max-width: 60px; /* Menyesuaikan ukuran tombol pada perangkat kecil */
+                padding: 0.8rem;
+                font-size: 1.2rem; /* Mengurangi ukuran ikon pada perangkat kecil */
+            }
+        }
+
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ed8ecdd0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            overflow: hidden; /* Menyembunyikan konten yang melampaui batas */
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-content img {
+            width: 100px; /* Ukuran gambar loading */
+            height: auto;
+            animation: shake 1s infinite; /* Menambahkan efek animasi pada gambar */
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(0); }
+            75% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div id="loadingScreen" style="display: none;">
+        <div class="loading-content">
+            <img src="bahan/ld1.png" alt="Loading">
+            <p>Bentar sayang...</p>
+        </div>
+    </div>
+
+    <div id="startPage" class="page">
+        <h1>HAI SAYANGKU</h1>
+        <div class="gif-container">
+            <img src="bahan/p2.gif" alt="GIF" class="small-gif">
+        </div>
+        <p>
+            jangan lupa diplay musicnya biar dapet feelnya hehe
+        </p>
+        <button onclick="showTimerPage()"><i class="fas fa-hourglass-start"></i></button>
+        <button onclick="showLovePage()"><i class="fas fa-heart"></i></button>
+        <button onclick="playMusic()"><i class="fas fa-music"></i></button>
+        <audio id="backgroundMusic" loop>
+            <source src="bahan/bakcsound1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <div id="timePage" class="page">
+        <h1>from August 2, 2024 until forever</h1>
+        <div id="timer">
+            <div><span id="days">00</span><p>Hari</p></div>
+            <div><span id="hours">00</span><p>Jam</p></div>
+            <div><span id="minutes">00</span><p>Menit</p></div>
+            <div><span id="seconds">00</span><p>Detik</p></div>
+        </div>
+        <button onclick="showStartPage()"><i class="fas fa-arrow-left"></i></button>
+    </div>
+
+    <div id="lovePage" class="page">
+        <h1>surat pendek hihi</h1>
+        <p>Dear Ronaa,</p>
+        <p>
+            hai sayang ga kerasa dah ketemu tanggal ini lagi, aku masih inget banget aku nembak kamu haha dijogja ya ayy lucu banget, aku seneng banget pokonya bahagia ayy susah buat aku ungkapin, setiap hariku rasanya lebih berwarna ay, ada kamu aku banyak ngerasain bahagia mulai dari hal kecil yang kamu lakuin, perhatian yang kamu kasih ke aku, support yang kamu kasih keaku, semuanya hal yang kamu lakuin aku selalu seneng dan aku selalu bersyukur ay punya pacar sebaik kamu, makasih ya ay semua cinta, kebahagiaan yang kamu kasih keaku,
+            Aku akan selalu sayang cinta sama kamu, setiap detik, setiap menit, dan setiap jam yang kita lewatin. 
+        </p>
+        <p>
+            aku mau mau ngomong sama kamu, maaf ya kalau sifat aku banyak bgt ngelukain kamu tanpa aku sadarin, aku sadar banget apa yang kurang dari aku, aku minta maaf tulus dari hati yang paling dalem kalau belakangan ini aku banyak mikirin yang engga" ay, aku tau kamu udah usaha sebaik yang kamu bisa dan harusnya aku hargai itu bukan malah bersikap yang sebaliknya, dan aku sangat hargai usaha usahamu ay, aku sedih bgt terharu sama apa yang kamu lakuin buat aku, menurutku itu satu hal yang arggg pokonya joss bgt kamu bisa lakuin itu, kamu ga menitingin egomu pokonya banyak deh, pokonya sama kamu itu adalah hal yang terbaik yang pernah aku rasain ay, dan aku berharap kamu ga pernah berenti untuk sayang ke aku.
+        </p>
+        <p>
+            belakangan ini kita emang punya kesibukan masing masing ya ay, dan yang aku rasain kita agak renggang gra" itu ketambah libur dan kita juga punya waktu buat balik kerumah masing" tapi gapapa ayy aku selalu usaha sebisaku biar kita selalu hangat hihih, kamu juga hebat kok ayy disibukmu kamu masih bisa inget sama aku, makasih banget yaaaaaaaa
+        </p>
+        <p>
+            tangga 2 sekarang jadi tanggal spesial buat aku, tapi aslinya semua tanggal spesial kok kalau sama kamu hahahah, maaf aku aga alay soal tanggal tapi aku suka tanggal spesial itu jadi keinget awal kita mulai cerita baru hihihih, pesanku ini ay semoga kita kedepane makin saling sayang, saling cinta, saling ngerti satu sama lain, aku tau setiap hubungan pasti ada ombaknya tapi gapapa namanya nyatuin dua orang yang berbeda itu butuh waktu dan aku yakin kita bisa, buat kedepanya apapun masalahnya, apapun yang kurang kita perbaiki ya sayang,
+        </p>
+        <p>
+            tetep sayang sama aku ya sayang, tetep jadi rona yang aku kenal dan aku sayangi mwahhhhhh
+        </p>
+        <p>
+            dari pacarmu yang lucu Galih, I LOVE YOU SAYANG
+        </p>
+        <button class="instagram-button" onclick="window.open('https://www.instagram.com/justpeaople_?igsh=OGtoYjVwZHVubXE0&utm_source=qr')"><i class="fab fa-instagram"></i></button>
+        <button onclick="showStartPage()"><i class="fas fa-arrow-left"></i></button>
+    </div>
+
+    <script>
+        function showLoadingScreen() {
+            document.getElementById('loadingScreen').style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.display = 'none';
+            }, 1000); // Menyembunyikan loading screen setelah 1 detik
+        }
+
+        function showTimerPage() {
+            showLoadingScreen();
+            setTimeout(() => {
+                document.getElementById('startPage').style.display = 'none';
+                document.getElementById('lovePage').style.display = 'none';
+                document.getElementById('timePage').style.display = 'block';
+                updateTimer(); // Memulai penghitungan waktu saat halaman ditampilkan
+            }, 1000); // Memastikan loading screen muncul selama 1 detik
+        }
+
+        function showLovePage() {
+            showLoadingScreen();
+            setTimeout(() => {
+                document.getElementById('startPage').style.display = 'none';
+                document.getElementById('timePage').style.display = 'none';
+                document.getElementById('lovePage').style.display = 'block';
+            }, 1000); // Memastikan loading screen muncul selama 1 detik
+        }
+
+        function showStartPage() {
+            showLoadingScreen();
+            setTimeout(() => {
+                document.getElementById('lovePage').style.display = 'none';
+                document.getElementById('timePage').style.display = 'none';
+                document.getElementById('startPage').style.display = 'block';
+            }, 1000); // Memastikan loading screen muncul selama 1 detik
+        }
+
+        function playMusic() {
+            const music = document.getElementById('backgroundMusic');
+            music.play();
+        }
+
+        const startDate = new Date("August 2, 2024 00:00:00").getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const elapsedTime = now - startDate;
+
+            const days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((elapsedTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
